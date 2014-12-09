@@ -75,9 +75,9 @@ nnoremap <Leader>n :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
-fun! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
     %s/\s\+$//e
     call cursor(l, c)
-endfun
+endfunction
