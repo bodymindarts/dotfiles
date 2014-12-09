@@ -42,12 +42,13 @@ set number                              " line number
 set shiftwidth=4
 set showtabline=2                       " always have tab line
 set smartcase                           " search is case sensitive when word starts with uppercase
+set wildmenu                            " show menu of complete option
 set softtabstop=4
 set splitbelow                          " split opens new window below
 set splitright                          " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=4                           " spaces per tab
-set visualbell
+set visualbell                          " no beeping
 
 augroup vimrc
     autocmd!
