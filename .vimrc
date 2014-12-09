@@ -52,11 +52,11 @@ set visualbell
 
 augroup vimrc
     autocmd!
-    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumnber
+    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber
         \ setlocal shiftwidth=2 |
         \ setlocal softtabstop=2 |
         \ setlocal tabstop=2
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumner,vim
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
         \ autocmd BufWritePre <buffer> :%s/\s\+$//e
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
