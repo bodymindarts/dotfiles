@@ -57,7 +57,7 @@ augroup vimrc
         \ setlocal softtabstop=2 |
         \ setlocal tabstop=2
     autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
-        \ autocmd BufWritePre <buffer> :%s/\s\+$//e
+        \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
 augroup end
@@ -74,3 +74,10 @@ nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>n :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
