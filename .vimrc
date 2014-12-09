@@ -68,7 +68,6 @@ nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap UU <esc>u
-nnoremap <leader>< <c-w>90|
 
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
