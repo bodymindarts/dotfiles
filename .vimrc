@@ -1,10 +1,8 @@
 set nocompatible
 
 filetype off                " req Vundle
-
 set rtp+=~/.vim/bundle/Vundle.vim    " req Vundle
 call vundle#begin()
-
 " vundle handles vundle
 Plugin 'gmarik/Vundle.vim'
 
@@ -13,7 +11,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
-
 call vundle#end()
 
 color jellybeans
@@ -46,6 +43,8 @@ set shiftwidth=4
 set showtabline=2                       " always have tab line
 set smartcase                           " search is case sensitive when word starts with uppercase
 set softtabstop=4
+set splitbelow                          " split opens new window below
+set splitright                          " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=4                           " spaces per tab
 set visualbell
@@ -62,6 +61,13 @@ augroup vimrc
     autocmd BufNewFile, BufRead *.md set ft=text
 augroup end
 
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
 let mapleader="-"
 
 nnoremap <cr> :nohlsearch<cr>
@@ -69,15 +75,14 @@ nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap UU <esc>u
 
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>n :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
-
-function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfunction
