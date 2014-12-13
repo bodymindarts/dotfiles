@@ -7,12 +7,13 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " plugins:
+" Plugin 'majutsushi/tagbar'      " side bar with local tags
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
-" Plugin 'majutsushi/tagbar'      " side bar with local tags
 call vundle#end()
 
 color jellybeans
