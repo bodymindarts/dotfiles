@@ -79,6 +79,7 @@ nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap UU <esc>u
+inoremap <esc> <C-o>:echo "use CtrlC"
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -94,3 +95,7 @@ nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>n :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+
+" hidden files in ctrlp
+let g:ctrlp_show_hidden = 1
