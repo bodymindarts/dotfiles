@@ -8,9 +8,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " plugins:
 Plugin 'flazz/vim-colorschemes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
+" Plugin 'majutsushi/tagbar'      " side bar with local tags
 call vundle#end()
 
 color jellybeans
@@ -25,6 +27,7 @@ filetype plugin indent on        " req Vundle
 
 runtime macros/matchit.vim
 syntax on
+set tags+=.git/tags
 set autoindent
 set colorcolumn=81                      " line width delimiter
 set cursorline                          " highlight line at cursor set hlsearch set ignorecase set incsearch
@@ -81,6 +84,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" for finding tags
+nnoremap <Leader>gt g<C-]>
 
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
