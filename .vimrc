@@ -29,8 +29,9 @@ filetype plugin indent on        " req Vundle
 
 runtime macros/matchit.vim
 syntax on
-set tags+=.git/tags
 set autoindent
+set autoread                            " auto reload when file changes
+set backspace=indent,eol,start          " allow backspace over eol etc.
 set colorcolumn=81                      " line width delimiter
 set cursorline                          " highlight line at cursor set hlsearch set ignorecase set incsearch
 set expandtab                           " use n times <space> instead of <tab>
@@ -47,13 +48,14 @@ set number                              " line number
 set shiftwidth=4
 set showtabline=2                       " always have tab line
 set smartcase                           " search is case sensitive when word starts with uppercase
-set wildmenu                            " show menu of complete option
 set softtabstop=4
 set splitbelow                          " split opens new window below
 set splitright                          " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=4                           " spaces per tab
+set tags+=.git/tags
 set visualbell                          " no beeping
+set wildmenu                            " show menu of complete option
 
 augroup vimrc
     autocmd!
@@ -80,7 +82,7 @@ nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap UU <esc>u
-inoremap <esc> <C-o>:echo "use CtrlC"
+inoremap II <esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -89,7 +91,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " for finding tags
-nnoremap <Leader>gt g<C-]>
+nnoremap gT g<C-]>
 
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
@@ -98,5 +100,12 @@ nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 
 
-" hidden files in ctrlp
+" search hidden files in CtrlP
 let g:ctrlp_show_hidden = 1
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+
+" use ag for ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
