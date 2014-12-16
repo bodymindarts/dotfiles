@@ -14,6 +14,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 call vundle#end()
 
@@ -63,10 +64,18 @@ augroup vimrc
         \ setlocal shiftwidth=2 |
         \ setlocal softtabstop=2 |
         \ setlocal tabstop=2
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
-        \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
+
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
+        \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+    " Jump to last cursor position unless it's invalid or in an event handler
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \ exe "normal g`\"" |
+        \ endif
 augroup end
 
 function! <SID>StripTrailingWhitespaces()
@@ -82,7 +91,7 @@ nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap UU <esc>u
-inoremap II <esc>
+inoremap jj <esc>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -91,7 +100,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " for finding tags
-nnoremap gT g<C-]>
+nnoremap <C-t> g<C-]>
 
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
@@ -109,3 +118,33 @@ let g:ctrlp_use_caching = 0
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
