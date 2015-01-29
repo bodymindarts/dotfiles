@@ -132,4 +132,22 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+map <leader>N :call RenameFile()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BREAK UP METHOD CALL (1 arg per line)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! <SID>ArgPerLine()
+    if search('(', 'cb', line('.')) == 0
+        call search('(', '', line('.'))
+    endif
+    exec "normal! a\<cr>\<esc>"
+    while search(',', '', line('.')) != 0
+        exec "normal! a\<cr>\<esc>"
+    endwhile
+    if search(')', '', line('.')) != 0
+        exec "normal! i\<cr>\<esc>"
+    endif
+endfunction
+nnoremap <leader>ba :call <SID>ArgPerLine()<cr>
