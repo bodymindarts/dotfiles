@@ -99,8 +99,22 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Quicker open alternate
+nnoremap <leader><leader> <c-^>
+
 " for finding tags
 nnoremap <C-t> g<C-]>
+
+" Close all other windows, open a vertical split, and open this file's test
+" alternate in it.
+nnoremap <leader>s :call FocusOnFile()<cr>
+function! FocusOnFile()
+  tabnew %
+  normal! v
+  normal! l
+  call OpenTestAlternate()
+  normal! h
+endfunction
 
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
