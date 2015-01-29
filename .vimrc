@@ -107,7 +107,7 @@ nnoremap <C-t> g<C-]>
 
 " Close all other windows, open a vertical split, and open this file's test
 " alternate in it.
-nnoremap <leader>s :call FocusOnFile()<cr>
+nnoremap <leader>f :call FocusOnFile()<cr>
 function! FocusOnFile()
   tabnew %
   normal! v
@@ -132,6 +132,20 @@ let g:ctrlp_use_caching = 0
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
