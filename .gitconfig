@@ -1,0 +1,13 @@
+[user]
+	name = Justin Carter
+	email = justin.carter@invision.de
+[core]
+	excludesfile = /Users/jcarter/.gitignore
+[init]
+	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags
+	a = add
+	rm = remove
+	co = checkout
+    b = branch -v
