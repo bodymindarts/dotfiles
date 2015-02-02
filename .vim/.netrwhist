@@ -1,7 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/jcarter/invision/cortex/features'
 let g:netrw_dirhist_2='/Users/jcarter/invision/cortex/features/step_definitions'
 let g:netrw_dirhist_3='/Users/jcarter/invision/cortex/spec/controllers/api'
 let g:netrw_dirhist_4='/usr/local/share/vim/vim74/doc'
 let g:netrw_dirhist_5='/usr/local/Cellar/vim/7.4.488/share/vim/vim74/doc'
+let g:netrw_dirhist_6='/Users/jcarter/invision/injixo-rails'
+let g:netrw_dirhist_7='/Users/jcarter/invision/injixo-rails/lib'
+let g:netrw_dirhist_8='/Users/jcarter/invision/injixo-rails/lib/injixo'
+let g:netrw_dirhist_9='/Users/jcarter/invision/injixo-rails/lib/injixo/controller_methods'
