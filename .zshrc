@@ -6,6 +6,7 @@ compinit
 # Use vim as the editor
 export EDITOR=vi
 
+# history
 export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
@@ -16,7 +17,8 @@ unsetopt flowcontrol
 
 alias ll="ls -al"
 alias gs="git status"
-alias gb="git branch"
+alias gb="git branch -v"
+alias ber="bundle exec rake"
 
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
