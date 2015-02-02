@@ -116,6 +116,9 @@ function! FocusOnFile()
   normal! h
 endfunction
 
+" split window and reset to last
+nnoremap vv <c-w>v<c-w>h<c-^>
+
 " for vim-rspec
 nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>n :call RunNearestSpec()<CR>
