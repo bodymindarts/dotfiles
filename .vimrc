@@ -11,7 +11,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
@@ -119,12 +118,6 @@ endfunction
 " split window and reset to last
 nnoremap vv <c-w>v<c-w>h<c-^>
 
-" for vim-rspec
-nnoremap <Leader>c :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>n :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
-
 
 " search hidden files in CtrlP
 let g:ctrlp_show_hidden = 1
@@ -201,7 +194,9 @@ function! AlternateForCurrentFile()
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
     end
+    " add _spec to file"
     let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    " add spec/ to path
     let new_file = 'spec/' . new_file
   else
     let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
@@ -213,3 +208,58 @@ function! AlternateForCurrentFile()
   return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUN TEST FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file .  command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! SetTestFile()
+    "     Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    if expand("%") != ""
+        :w
+    end
+
+    let cmd = "rake"
+
+    if match(a:filename, '\.feature$') != -1
+        let cmd = "cucumber " . a:filename
+    elseif a:filename != ""
+        let cmd = "rspec --color " .  a:filename
+    end
+
+    if filereadable("Gemfile")
+        let cmd = "bundle exec " . cmd
+    end
+
+    execute "!clear && echo " . cmd " && " . cmd
+endfunction
+
+nnoremap <Leader>c :call RunTestFile()<CR>
+nnoremap <Leader>n :call RunNearestTest()<CR>
+nnoremap <Leader>a :call RunTests('')<CR>
