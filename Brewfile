@@ -4,6 +4,8 @@
 
 # little prog to display a dir tree in the shell
 install tree
+install ack
+install ag
 
 # install caskroom to use brew for GUI apps
 install caskroom/cask/brew-cask
