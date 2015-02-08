@@ -249,17 +249,26 @@ function! RunTests(filename)
 
     if match(a:filename, '\.feature$') != -1
         let cmd = "cucumber " . a:filename
-    elseif match(a:filename, '_spec\.rb$') != -1
+    elseif match(a:filename, '_spec\.rb') != -1
         let cmd = "rspec --color " .  a:filename
     end
 
     if filereadable("Gemfile")
         let cmd = "bundle exec " . cmd
     end
-
+    let t:grb_last_test_command = cmd
     execute "!clear && echo " . cmd " && " . cmd
 endfunction
 
+function! RunLastTestCommand()
+    if expand("%") != ""
+        :w
+    end
+    if exists("t:grb_last_test_command") == 1
+        execute "!clear && echo " . t:grb_last_test_command . " && " . t:grb_last_test_command
+    endif
+endfunction
 nnoremap <Leader>c :call RunTestFile()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
+nnoremap <leader>l :call RunLastTestCommand()<CR>
