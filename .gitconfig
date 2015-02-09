@@ -11,6 +11,5 @@
     rm = remove
     co = checkout
     b = branch -v
-; don't use this in every single .git/config when working with mutliple accounts
-; [credential]
-;     helper = osxkeychain
+[credential]
+    helper = osxkeychain
