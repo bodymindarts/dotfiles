@@ -248,7 +248,7 @@ function! RunTests(filename)
     let cmd = "rake"
 
     if match(a:filename, '\.feature$') != -1
-        let cmd = "cucumber " . a:filename
+        let cmd = "cucumber -r ./features/ " . a:filename
     elseif match(a:filename, '_spec\.rb') != -1
         let cmd = "rspec --color " .  a:filename
     end
