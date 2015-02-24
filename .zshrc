@@ -11,6 +11,9 @@ export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 
+# add /usr/local/sbin to path
+PATH=$PATH:/usr/local/sbin
+
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
 unsetopt flowcontrol
