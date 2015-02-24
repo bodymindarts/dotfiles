@@ -56,6 +56,13 @@ set tags+=.git/tags
 set visualbell                          " no beeping
 set wildmenu                            " show menu of complete option
 
+if has('persistent_undo')
+    set undodir=~/.vim/undo//
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+endif
+
 augroup vimrc
     autocmd!
     autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber
