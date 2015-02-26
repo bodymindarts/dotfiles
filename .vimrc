@@ -53,15 +53,12 @@ set splitright                          " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=4                           " spaces per tab
 set tags+=.git/tags
+set undodir=~/.vim/undo//
+set undofile
+set undolevels=1000
+set undoreload=10000
 set visualbell                          " no beeping
 set wildmenu                            " show menu of complete option
-
-if has('persistent_undo')
-    set undodir=~/.vim/undo//
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
-endif
 
 augroup vimrc
     autocmd!
