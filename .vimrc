@@ -194,10 +194,8 @@ function! AlternateForCurrentFile()
   let going_to_spec = !in_spec
   let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
   if going_to_spec
-    let new_file = substitute(new_file, '\v^(app|lib)/', '', '') " use very magic option \v
-    " add _spec to file"
+    let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
     let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    " add spec/ to path
     let new_file = 'spec/' . new_file
   else
     let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
