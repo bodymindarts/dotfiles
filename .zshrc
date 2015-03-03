@@ -3,6 +3,13 @@ zstyle :compinstall filename '/Users/jcarter/.zshrc'
 autoload -Uz compinit
 compinit
 
+# antigen plugins:
+source ~/antigen/antigen.zsh
+
+antigen bundle olivierverdier/zsh-git-prompt
+
+antigen apply
+
 # Use vim as the editor
 export EDITOR=vi
 
@@ -23,13 +30,7 @@ alias gs="git status"
 alias gb="git branch -v"
 alias ber="bundle exec rake"
 
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWCOLORHINTS=1
+PROMPT='%B%m%~%b$(git_super_status) %# '
 
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
