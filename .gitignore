@@ -39,3 +39,4 @@ node_modules/
 playstuff/
 .bach_history
 .viminfo
+.antigen/
