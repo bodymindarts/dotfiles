@@ -41,5 +41,7 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS=1
 
+function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
+
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
