@@ -6,7 +6,7 @@ compinit
 # antigen plugins:
 source ~/antigen/antigen.zsh
 
-antigen bundle olivierverdier/zsh-git-prompt
+# antigen bundle olivierverdier/zsh-git-prompt
 
 antigen apply
 
@@ -30,7 +30,16 @@ alias gs="git status"
 alias gb="git branch -v"
 alias ber="bundle exec rake"
 
-PROMPT='%B%m%~%b$(git_super_status) %# '
+
+# PROMPT='%B%m%~%b$(git_super_status) %# '
+
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCOLORHINTS=1
 
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
