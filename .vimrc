@@ -14,6 +14,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 color jellybeans
