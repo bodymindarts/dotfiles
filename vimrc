@@ -15,6 +15,10 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'godlygeek/tabular'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'nginx.vim'
 call vundle#end()
 
 color jellybeans
