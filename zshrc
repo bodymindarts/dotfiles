@@ -18,7 +18,6 @@ export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 
-# add /usr/local/sbin to path
 PATH=$PATH:/usr/local/sbin
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
@@ -29,9 +28,6 @@ alias ll="ls -al"
 alias gs="git status"
 alias gb="git branch -v"
 alias ber="bundle exec rake"
-
-
-# PROMPT='%B%m%~%b$(git_super_status) %# '
 
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
