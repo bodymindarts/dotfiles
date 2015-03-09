@@ -42,3 +42,9 @@ function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
+eval "$(boot2docker shellinit)"
+
+export REDIS_URL='redis://dockerhost:6379'
+export RABBITMQ_URL='amqp://dockerhost:5672'
+
+alias dc=docker-compose
