@@ -1,7 +1,4 @@
-# run "brew tap homebrew/boneyard"
-# and then "brew bundle"
-# to run all these commands via brew
-
+tap thoughtbot/formulae
 install git
 install zsh
 install ack
