@@ -68,13 +68,14 @@ set wildmenu                       " show menu of complete option
 
 augroup vimrc
     autocmd!
-    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber
+    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber,nginx
         \ setlocal shiftwidth=2 |
         \ setlocal softtabstop=2 |
         \ setlocal tabstop=2
 
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
+    autocmd BufReadPost nginx.conf set ft=nginx
 
     autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
         \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
