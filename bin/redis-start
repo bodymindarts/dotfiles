@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker run -d -p 6379:6379 -v /redis_data:/data --name redis redis
+docker ps
