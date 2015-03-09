@@ -18,7 +18,7 @@ export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 
-PATH=$PATH:/usr/local/sbin
+PATH=$PATH:~/bin:/usr/local/sbin
 
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
 # that those keys can be used for other things.
@@ -32,6 +32,8 @@ alias ll="ls -al"
 alias gs="git status"
 alias gb="git branch -v"
 alias ber="bundle exec rake"
+
+function dc { dc-anywhere.sh $@ }
 
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
@@ -49,5 +51,3 @@ eval "$(boot2docker shellinit)"
 
 export REDIS_URL='redis://dockerhost:6379'
 export RABBITMQ_URL='amqp://dockerhost:5672'
-
-alias dc=docker-compose
