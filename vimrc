@@ -99,7 +99,7 @@ let mapleader="-"
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>me :!chmod +x %<cr>
+nnoremap <leader>mx :!chmod +x %<cr>
 inoremap UU <esc>u
 inoremap jj <esc>
 
