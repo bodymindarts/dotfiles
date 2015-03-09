@@ -24,7 +24,10 @@ PATH=$PATH:/usr/local/sbin
 # that those keys can be used for other things.
 unsetopt flowcontrol
 
+alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
+alias cdf="cd ~/.dotfiles"
+
 alias ll="ls -al"
 alias gs="git status"
 alias gb="git branch -v"
