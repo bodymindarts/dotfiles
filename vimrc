@@ -29,41 +29,42 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraLines ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-filetype plugin indent on        " req Vundle
+filetype plugin indent on          " req Vundle
 
 runtime macros/matchit.vim
 syntax on
 set autoindent
-set autoread                            " auto reload when file changes
-set backspace=indent,eol,start          " allow backspace over eol etc.
-set colorcolumn=81                      " line width delimiter
-set cursorline                          " highlight line at cursor set hlsearch set ignorecase set incsearch
-set expandtab                           " use n times <space> instead of <tab>
-set hlsearch                            " highlight all search results
-set ignorecase                          " ignore case when searching
-set incsearch                           " highlight while typing search
-set laststatus=2                        " line for status of window
-set list                                " show symbols for <eol> and <tab>
-set listchars=tab:▸\ ,eol:¬             " set symbols for <eol> and <tab>
-set nobackup                            " no backups, no swapfiles
-set noswapfile                          " no backups, no swapfiles
-set nowritebackup                       " no backups, no swapfiles
-set number                              " line number
+set autoread                       " auto reload when file changes
+set autowrite                      " Automatically :write before running commands
+set backspace=indent,eol,start     " allow backspace over eol etc.
+set colorcolumn=81                 " line width delimiter
+set cursorline                     " highlight line at cursor set hlsearch set ignorecase set incsearch
+set expandtab                      " use n times <space> instead of <tab>
+set hlsearch                       " highlight all search results
+set ignorecase                     " ignore case when searching
+set incsearch                      " highlight while typing search
+set laststatus=2                   " line for status of window
+set list                           " show symbols for <eol> and <tab>
+set listchars=tab:▸\ ,eol:¬        " set symbols for <eol> and <tab>
+set nobackup                       " no backups, no swapfiles
+set noswapfile                     " no backups, no swapfiles
+set nowritebackup                  " no backups, no swapfiles
+set number                         " line number
 set shiftwidth=4
-set showtabline=2                       " always have tab line
-set smartcase                           " search is case sensitive when word starts with uppercase
+set showtabline=2                  " always have tab line
+set smartcase                      " search is case sensitive when word starts with uppercase
 set softtabstop=4
-set splitbelow                          " split opens new window below
-set splitright                          " vsplit opens new window to the right
+set splitbelow                     " split opens new window below
+set splitright                     " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
-set tabstop=4                           " spaces per tab
+set tabstop=4                      " spaces per tab
 set tags+=.git/tags
 set undodir=~/.vim/undo//
 set undofile
 set undolevels=1000
 set undoreload=10000
-set visualbell                          " no beeping
-set wildmenu                            " show menu of complete option
+set visualbell                     " no beeping
+set wildmenu                       " show menu of complete option
 
 augroup vimrc
     autocmd!
