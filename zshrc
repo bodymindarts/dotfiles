@@ -4,11 +4,21 @@ autoload -Uz compinit
 compinit
 
 # antigen plugins:
-source ~/antigen/antigen.zsh
+source ~/.antigen/antigen.zsh
 
 # antigen bundle olivierverdier/zsh-git-prompt
+antigen use oh-my-zsh
+# antigen theme robbyrussell/oh-my-zsh themes/fino
 
 antigen apply
+
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCOLORHINTS=1
 
 # Use vim as the editor
 export EDITOR=vi
