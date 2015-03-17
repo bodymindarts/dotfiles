@@ -75,6 +75,8 @@ augroup vimrc
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufNewFile, BufRead *.md set ft=text
     autocmd BufReadPost nginx.conf set ft=nginx
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
     autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
         \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
@@ -294,3 +296,4 @@ nnoremap <Leader>c :call RunTestFile()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
 nnoremap <leader>l :call RunLastTestCommand()<CR>
+:nohl
