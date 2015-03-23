@@ -115,13 +115,14 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-let mapleader="-"
+let mapleader=","
 
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
-nnoremap <leader>mx :!chmod +x %<cr>
+nnoremap <leader>x :w<cr>:!chmod +x %<cr>:edit!<cr>
+nnoremap <leader>m :!mkdir -p %:p:h<cr>
 inoremap UU <esc>u
 inoremap jj <esc>
 
@@ -133,9 +134,6 @@ nnoremap <C-l> <C-w>l
 
 " Quicker open alternate
 nnoremap <leader><leader> <c-^>
-
-" for finding tags
-nnoremap <C-t> g<C-]>
 
 " Close all other windows, open a vertical split, and open this file's test
 " alternate in it.
@@ -152,20 +150,30 @@ endfunction
 nnoremap vv <c-w>v<c-w>h<c-^>
 
 
-" search hidden files in CtrlP
-let g:ctrlp_show_hidden = 1
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" ag is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
-
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_abbrev = {
+  \ 'abbrevs': [
+    \ {
+      \ 'pattern': 'vim',
+      \ 'expanded': '@cd ~/.vim/'
+    \ }
+  \ ]
+\}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" POPULATE ARGSLIST FROM QUICKFIXILIST
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quickfix list management
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 function! QuickfixFilenames()
     let buffer_numbers = {}
     for quickfix_item in getqflist()
@@ -175,13 +183,48 @@ function! QuickfixFilenames()
 endfunction
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
 
+function! GetBufferList()
+    redir =>buflist
+    silent! ls
+    redir END
+    return buflist
+endfunction
+
+function! BufferIsOpen(bufname)
+    let buflist = GetBufferList()
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            return 1
+        endif
+    endfor
+    return 0
+endfunction
+
+function! ToggleQuickfix()
+    if BufferIsOpen("Quickfix List")
+        cclose
+    else
+        call OpenQuickfix()
+    endif
+endfunction
+
+function! OpenQuickfix()
+    cwindow
+    if &ft == "qf"
+        cc
+    endif
+endfunction
+
+nnoremap <leader>pa :Qargs<cr>
+nnoremap <leader>q :call ToggleQuickfix()<cr>
+nnoremap <leader>rq :cgetfile .git/rspec.quickfix<cr>:call OpenQuickfix()<cr>
+nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PromoteToLet()
   :normal! dd
-  " :exec '?^\s*it\>'
   :normal! P
   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
   :normal ==
