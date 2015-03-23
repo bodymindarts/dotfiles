@@ -217,7 +217,7 @@ function! OpenQuickfix()
     endif
 endfunction
 
-nnoremap <leader>pa :Qargs<cr>
+nnoremap <leader>aq :Qargs<cr>
 nnoremap <leader>q :call ToggleQuickfix()<cr>
 nnoremap <leader>rq :cgetfile .git/rspec.quickfix<cr>:call OpenQuickfix()<cr>
 nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix()<cr>
