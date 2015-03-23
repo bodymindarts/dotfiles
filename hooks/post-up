@@ -3,10 +3,9 @@
 [ -d ~/.vim/undo ] || mkdir ~/.vim/undo
 
 for file in $(cat ~/.dotfiles/hooks/excludes); do
-    rm -r ~/.$file 2>/dev/null
+    [ -e ~/.$file ] || rm -r ~/.$file
 done
 
 for dir in $(cat ~/.dotfiles/hooks/links); do
-    rm ~/$dir
-    ln -s ~/.dotfiles/$dir ~/$dir
+    [ -L ~/$dir ] || ln -fFs ~/.dotfiles/$dir ~/$dir
 done
