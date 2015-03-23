@@ -125,6 +125,7 @@ nnoremap <leader>x :w<cr>:!chmod +x %<cr>:edit!<cr>
 nnoremap <leader>m :!mkdir -p %:p:h<cr>
 inoremap UU <esc>u
 inoremap jj <esc>
+nnoremap <leader>sp :tabe ~/.sbt/0.13/plugins/plugins.sbt<cr>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
