@@ -162,6 +162,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_root_markers = ['tags', '.tags']
 let g:ctrlp_abbrev = {
   \ 'abbrevs': [
     \ {
