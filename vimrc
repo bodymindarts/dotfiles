@@ -168,6 +168,10 @@ let g:ctrlp_abbrev = {
     \ {
       \ 'pattern': 'vim',
       \ 'expanded': '@cd ~/.vim/'
+    \ },
+    \ {
+      \ 'pattern': 'dot',
+      \ 'expanded': '@cd ~/.dotfiles/'
     \ }
   \ ]
 \}
