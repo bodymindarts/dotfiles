@@ -1,0 +1,12 @@
+#!/bin/bash
+
+[ -d ~/.vim/undo ] || mkdir ~/.vim/undo
+
+for file in $(cat ~/.dotfiles/hooks/excludes); do
+    rm -r ~/.$file 2>/dev/null
+done
+
+for dir in $(cat ~/.dotfiles/hooks/links); do
+    rm ~/$dir
+    ln -s ~/.dotfiles/$dir ~/$dir
+done
