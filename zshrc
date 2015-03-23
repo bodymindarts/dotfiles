@@ -7,7 +7,7 @@ compinit
 source ~/.antigen/antigen.zsh
 
 # antigen bundle olivierverdier/zsh-git-prompt
-antigen use oh-my-zsh
+# antigen use oh-my-zsh
 # antigen theme robbyrussell/oh-my-zsh themes/fino
 
 antigen apply
@@ -41,17 +41,11 @@ alias cdf="cd ~/.dotfiles"
 alias ll="ls -al"
 alias gs="git status"
 alias gb="git branch -v"
+alias gp="git pull"
+alias gl="git log --oneline --graph --decorate --all"
 alias ber="bundle exec rake"
 
 function dc { dc-anywhere.sh $@ }
-
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWCOLORHINTS=1
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 
