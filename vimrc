@@ -43,6 +43,12 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 filetype plugin indent on          " req Vundle
 
+" The following beast is something i didn't write... it will return the
+" syntax highlighting group that the current "thing" under the cursor
+" belongs to -- very useful for figuring out what to change as far as
+" syntax highlighting goes.
+nmap <silent> <leader>ps :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 runtime macros/matchit.vim
 syntax on
 set autoindent
