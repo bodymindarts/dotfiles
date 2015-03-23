@@ -2,18 +2,17 @@ XPTemplate priority=personal
 
 let s:f = XPTfuncs()
 
-fun! s:f.classNameFromSpecFile()
-    let name = substitute(expand('%:t'), '_spec.rb', '', '')
-    return substitute(name, '\v(^|_)(\a)', '\u\2', 'g')
-endfun
+XPTinclude
+    \ _common/common
 
-XPT req abbr hint=require\ '...'
-require '`lib^'
+fun! s:f.rubyClassName()
+    return self.RubyCamelCase(substitute(self.file(), '\v(_spec)?.rb', '', ''))
+endfun
 
 XPT spec hint=rspec\ template
 require '`spec_helper^'
 
-describe `classNameFromSpecFile()^ do
+describe `rubyClassName()^ do
   it '`explanation^' do
     `cursor^
   end
@@ -25,4 +24,10 @@ it '`explanation^' do
 end
 
 XPT let hint=rspec\ let
+XSET var|post=RubySnakeCase()
 let(:`var^) { `cursor^ }
+
+XPT clas hint=ruby\ class
+class `rubyClassName()^
+  `cursor^
+end
