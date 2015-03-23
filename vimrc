@@ -8,6 +8,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " plugins:
 Plugin 'flazz/vim-colorschemes'
+" Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
@@ -24,7 +25,15 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
 call vundle#end()
 
-color jellybeans
+colorscheme jellybeans
+
+" set background=dark
+" let g:solarized_termcolors=256
+" colorscheme solarized
+
+let g:jellybeans_overrides = {
+\  'Special': { 'guifg': 'de5577' },
+\}
 
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
