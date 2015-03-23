@@ -68,6 +68,7 @@ set nobackup                       " no backups, no swapfiles
 set noswapfile                     " no backups, no swapfiles
 set nowritebackup                  " no backups, no swapfiles
 set number                         " line number
+set runtimepath+=~/.vim/xpt-personal
 set shiftwidth=4
 set showtabline=2                  " always have tab line
 set smartcase                      " search is case sensitive when word starts with uppercase
@@ -76,7 +77,7 @@ set splitbelow                     " split opens new window below
 set splitright                     " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=4                      " spaces per tab
-set tags+=.git/tags
+set tags+=.git/tags,./.tags
 set undodir=~/.vim/undo//
 set undofile
 set undolevels=1000
