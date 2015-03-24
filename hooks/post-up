@@ -1,11 +1,11 @@
 #!/bin/bash
 
-[ -d ~/.vim/undo ] || mkdir ~/.vim/undo
+[[ -d ~/.vim/undo ]] || mkdir ~/.vim/undo
 
 for file in $(cat ~/.dotfiles/hooks/excludes); do
-    [ -e ~/.$file ] || rm -r ~/.$file
+    [[ -e ~/.$file ]] || rm -r ~/.$file
 done
 
 for dir in $(cat ~/.dotfiles/hooks/links); do
-    [ -L ~/$dir ] || ln -fFs ~/.dotfiles/$dir ~/$dir
+    [[ -L ~/$dir ]] || ln -fFs ~/.dotfiles/$dir ~/$dir
 done
