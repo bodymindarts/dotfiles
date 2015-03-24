@@ -1,6 +1,6 @@
 XPTemplate priority=personal
 
-let s:f = XPTfuncs()
+let s:f = g:XPTfuncs()
 
 XPTinclude
     \ _common/common
