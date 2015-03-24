@@ -189,6 +189,7 @@ function! QuickfixFilenames()
     return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+nnoremap <leader>aq :Qargs<cr>
 
 function! GetBufferList()
     redir =>buflist
@@ -222,7 +223,6 @@ function! OpenQuickfix()
     endif
 endfunction
 
-nnoremap <leader>aq :Qargs<cr>
 nnoremap <leader>q :call ToggleQuickfix()<cr>
 nnoremap <leader>rq :cgetfile .git/rspec.quickfix<cr>:call OpenQuickfix()<cr>
 nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix()<cr>
