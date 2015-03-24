@@ -1,4 +1,4 @@
-zstyle :compinstall filename '/Users/jcarter/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
