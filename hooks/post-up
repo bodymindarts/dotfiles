@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [[ -d ~/.vim/undo ]] || mkdir ~/.vim/undo
 
-for file in $(cat ~/.dotfiles/hooks/excludes); do
-    [[ -e ~/.$file ]] || rm -r ~/.$file
-done
+while read file; do
+    [[ -e ~/."$file" ]] || rm -r ~/."$file"
+done < ~/.dotfiles/hooks/excludes
 
-for dir in $(cat ~/.dotfiles/hooks/links); do
-    [[ -L ~/$dir ]] || ln -fFs ~/.dotfiles/$dir ~/$dir
-done
+while read dir; do
+   [[ -L ~/"$dir" ]] || ln -fFs ~/.dotfiles/"$dir" ~/"$dir"
+done < ~/.dotfiles/hooks/links
