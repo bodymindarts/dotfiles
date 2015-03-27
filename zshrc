@@ -45,6 +45,8 @@ alias gp="git pull"
 alias gl="git log --oneline --graph --decorate"
 alias ber="bundle exec rake"
 
+alias sr="screen -r"
+
 function dc { dc-anywhere.sh $@ }
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
