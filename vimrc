@@ -217,7 +217,7 @@ function! ToggleQuickfix()
 endfunction
 
 function! OpenQuickfix()
-    cwindow
+    botright cwindow
     if &ft == "qf"
         cc
     endif
