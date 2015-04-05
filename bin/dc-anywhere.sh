@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 while [[ ! -f docker-compose.yml && $PWD != '/' ]]; do
     cd ..
 done
