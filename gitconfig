@@ -10,6 +10,7 @@
     a = add
     rm = remove
     co = checkout
+    ci = commit
     b = branch -v
 [credential]
     helper = osxkeychain
