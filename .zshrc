@@ -36,13 +36,12 @@ unsetopt flowcontrol
 
 alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
-alias cdf="cd ~/.dotfiles"
 
 alias ll="ls -al"
 alias gs="git status"
 alias gb="git branch -v"
 alias gp="git pull"
-alias gl="git log --oneline --graph --decorate"
+alias gl="git log --oneline --graph --decorate --date=relative"
 alias ber="bundle exec rake"
 
 alias sr="screen -r"
