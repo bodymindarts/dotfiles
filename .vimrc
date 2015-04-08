@@ -1,10 +1,10 @@
 set nocompatible
 
 filetype off                " req Vundle
-set rtp+=~/.vim/bundle/Vundle.vim    " req Vundle
+set rtp+=~/.vim/bundle/vundle " req Vundle
 call vundle#begin()
 " vundle handles vundle
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/vundle'
 
 " plugins:
 Plugin 'flazz/vim-colorschemes'
