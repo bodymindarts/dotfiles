@@ -2,7 +2,7 @@
     name = Justin Carter
     email = justin.carter@invision.de
 [core]
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.global-gitignore
 [init]
     templatedir = ~/.git_template
 [alias]
