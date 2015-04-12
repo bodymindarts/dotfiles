@@ -311,10 +311,10 @@ function! RunTestFile(...)
     let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
     if in_test_file
         call SetTestFile()
-    elseif !exists("t:grb_test_file")
+    elseif !exists("t:current_test_file")
         return
     end
-    call RunTests(t:grb_test_file .  command_suffix)
+    call RunTests(t:current_test_file .  command_suffix)
 endfunction
 
 function! RunNearestTest()
@@ -324,7 +324,7 @@ endfunction
 
 function! SetTestFile()
     "     Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
+    let t:current_test_file=@%
 endfunction
 
 function! RunTests(filename)
@@ -344,7 +344,7 @@ function! RunTests(filename)
     if filereadable("Gemfile")
         let cmd = "bundle exec " . cmd
     end
-    let t:grb_last_test_command = cmd
+    let t:last_test_command = cmd
     execute "!clear && echo " . cmd " && " . cmd
 endfunction
 
