@@ -12,5 +12,7 @@
     co = checkout
     ci = commit
     b = branch -v
+    a = add
+    ap = add -p
 [credential]
     helper = osxkeychain
