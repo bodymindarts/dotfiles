@@ -7,9 +7,6 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 " plugins:
-Plugin 'flazz/vim-colorschemes'
-" Plugin 'altercation/vim-colors-solarized'
-Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
@@ -17,18 +14,11 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-bundler'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'godlygeek/tabular'
-Plugin 'drmingdrmer/xptemplate'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
 call vundle#end()
 
 colorscheme jellybeans
-
-" set background=dark
-" let g:solarized_termcolors=256
-" colorscheme solarized
 
 let g:jellybeans_overrides = {
 \  'Special': { 'guifg': 'de5577' },
@@ -152,24 +142,6 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP SETTINGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_switch_buffer = 'e'
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_root_markers = ['tags', '.tags']
-let g:ctrlp_abbrev = {
-  \ 'abbrevs': [
-    \ {
-      \ 'pattern': 'vim',
-      \ 'expanded': '@cd ~/.vim/'
-    \ },
-  \ ]
-\}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
