@@ -47,6 +47,7 @@ set backspace=indent,eol,start     " allow backspace over eol etc.
 set colorcolumn=81                 " line width delimiter
 set cursorline                     " highlight line at cursor set hlsearch set ignorecase set incsearch
 set expandtab                      " use n times <space> instead of <tab>
+set foldmethod=manual              " no automatic folding
 set hlsearch                       " highlight all search results
 set ignorecase                     " ignore case when searching
 set incsearch                      " highlight while typing search
@@ -54,6 +55,7 @@ set laststatus=2                   " line for status of window
 set list                           " show symbols for <eol> and <tab>
 set listchars=tab:▸\ ,eol:¬        " set symbols for <eol> and <tab>
 set nobackup                       " no backups, no swapfiles
+set nofoldenable                   " no automatic folding
 set noswapfile                     " no backups, no swapfiles
 set nowritebackup                  " no backups, no swapfiles
 set number                         " line number
