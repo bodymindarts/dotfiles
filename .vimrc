@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 " plugins:
+Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
@@ -144,6 +145,24 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_root_markers = ['tags', '.tags']
+let g:ctrlp_abbrev = {
+  \ 'abbrevs': [
+    \ {
+      \ 'pattern': 'vim',
+      \ 'expanded': '@cd ~/.vim/'
+    \ },
+  \ ]
+\}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
@@ -357,14 +376,6 @@ function! SelectaFile(path)
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".")<cr>
-nnoremap <leader>gv :call SelectaFile("app/views")<cr>
-nnoremap <leader>gc :call SelectaFile("app/controllers")<cr>
-nnoremap <leader>gm :call SelectaFile("app/models")<cr>
-nnoremap <leader>gh :call SelectaFile("app/helpers")<cr>
-nnoremap <leader>gl :call SelectaFile("lib")<cr>
-nnoremap <leader>gp :call SelectaFile("public")<cr>
-nnoremap <leader>gs :call SelectaFile("public/stylesheets")<cr>
-nnoremap <leader>gf :call SelectaFile("features")<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
