@@ -47,5 +47,5 @@ eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
 eval "$(boot2docker shellinit)"
 
-export REDIS_URL='redis://dockerhost:6379'
-export RABBITMQ_URL='amqp://dockerhost:5672'
+export REDIS_URL='redis://192.168.59.103:6379'
+export RABBITMQ_URL='amqp://192.168.59.103:5672'
