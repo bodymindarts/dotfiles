@@ -3,15 +3,6 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
-# antigen plugins:
-source ~/.antigen/antigen.zsh
-
-# antigen bundle olivierverdier/zsh-git-prompt
-# antigen use oh-my-zsh
-# antigen theme robbyrussell/oh-my-zsh themes/fino
-
-antigen apply
-
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
 GIT_PS1_SHOWDIRTYSTATE=1
