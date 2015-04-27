@@ -41,7 +41,7 @@ alias sr="screen -r"
 function dc { dc-anywhere.sh $@ }
 
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
-function cdp() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
+function p() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
 
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
