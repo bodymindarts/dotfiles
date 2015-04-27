@@ -28,7 +28,8 @@ unsetopt flowcontrol
 alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 
-alias ll="ls -al"
+alias ll="ls -alG"
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 alias gs="git status"
 alias gb="git branch -v"
 alias gp="git pull"
