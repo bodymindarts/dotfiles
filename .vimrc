@@ -62,14 +62,14 @@ set noswapfile                     " no backups, no swapfiles
 set nowritebackup                  " no backups, no swapfiles
 set number                         " line number
 set runtimepath+=~/.vim/xpt-personal
-set shiftwidth=4
+set shiftwidth=2
 set showtabline=2                  " always have tab line
 set smartcase                      " search is case sensitive when word starts with uppercase
-set softtabstop=4
+set softtabstop=2
 set splitbelow                     " split opens new window below
 set splitright                     " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
-set tabstop=4                      " spaces per tab
+set tabstop=2                      " spaces per tab
 set tags+=.git/tags,./.tags
 set undodir=~/.vim/undo//
 set undofile
@@ -80,13 +80,9 @@ set wildmenu                       " show menu of complete option
 
 augroup vimrc
     autocmd!
-    autocmd FileType ruby,haml,eruby,yaml,sass,scss,css,javascript,cucumber,nginx
-        \ setlocal shiftwidth=2 |
-        \ setlocal softtabstop=2 |
-        \ setlocal tabstop=2
+    autocmd FileType vim  setlocal shiftwidth=4 | setlocal softtabstop=4 | setlocal tabstop=4
 
     autocmd BufNewFile, BufRead *.json set ft=javascript
-    autocmd BufNewFile, BufRead *.md set ft=text
     autocmd BufReadPost nginx.conf set ft=nginx
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
@@ -131,13 +127,13 @@ nnoremap <leader><leader> <c-^>
 
 " Close all other windows, open a vertical split, and open this file's test
 " alternate in it.
-nnoremap <leader>f :call FocusOnFile()<cr>
+nnoremap <leader>F :call FocusOnFile()<cr>
 function! FocusOnFile()
-  tabnew %
-  normal! v
-  normal! l
-  call OpenTestAlternate()
-  normal! h
+    tabnew %
+    normal! v
+    normal! l
+    call OpenTestAlternate()
+    normal! h
 endfunction
 
 " split window and reset to last
@@ -157,13 +153,13 @@ let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_root_markers = ['tags', '.tags']
 let g:ctrlp_abbrev = {
-  \ 'abbrevs': [
-    \ {
-      \ 'pattern': 'vim',
-      \ 'expanded': '@cd ~/.vim/'
-    \ },
-  \ ]
-\}
+    \ 'abbrevs': [
+        \ {
+            \ 'pattern': 'vim',
+            \ 'expanded': '@cd ~/.vim/'
+        \ },
+    \ ]
+\ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
@@ -219,10 +215,10 @@ nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix(
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PromoteToLet()
-  :normal! dd
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
+    :normal! dd
+    :normal! P
+    :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+    :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
@@ -265,29 +261,29 @@ nnoremap <leader>ba :call <SID>ArgPerLine()<cr>
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
+    let new_file = AlternateForCurrentFile()
+    exec ':e ' . new_file
 endfunction
 function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
-  if going_to_spec
-    let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-        let new_file = 'app/' . new_file
+    let current_file = expand("%")
+    let new_file = current_file
+    let in_spec = match(current_file, '^spec/') != -1
+    let going_to_spec = !in_spec
+    let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
+    if going_to_spec
+        let new_file = substitute(new_file, '\v^(app|lib)/', '', '')    " use very magic option \v => don't have to escape \( \) \|
+        let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+        let new_file = 'spec/' . new_file
     else
-        let new_file = 'lib/' . new_file
-    end
-  endif
-  return new_file
+        let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+        let new_file = substitute(new_file, '^spec/', '', '')
+        if in_app
+            let new_file = 'app/' . new_file
+        else
+            let new_file = 'lib/' . new_file
+        end
+    endif
+    return new_file
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
@@ -354,37 +350,46 @@ nnoremap <Leader>c :call RunTestFile()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
 nnoremap <leader>l :call RunLastTestCommand()<CR>
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Selecta Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
 function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
+    try
+        let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+    catch /Vim:Interrupt/
+        " Swallow the ^C so that the redraw below happens; otherwise there will be
+        " leftovers from selecta on the screen
+        redraw!
+        return
+    endtry
     redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
+    exec a:vim_command . " " . selection
 endfunction
 
 function! SelectaFile(path)
-  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
+    call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".")<cr>
+nnoremap <leader>gv :call SelectaFile("app/views")<cr>
+nnoremap <leader>gc :call SelectaFile("app/controllers")<cr>
+nnoremap <leader>gm :call SelectaFile("app/models")<cr>
+nnoremap <leader>gh :call SelectaFile("app/helpers")<cr>
+nnoremap <leader>gl :call SelectaFile("lib")<cr>
+nnoremap <leader>gp :call SelectaFile("public")<cr>
+nnoremap <leader>gs :call SelectaFile("public/stylesheets")<cr>
+nnoremap <leader>gf :call SelectaFile("features")<cr>
 
 "Fuzzy select
 function! SelectaIdentifier()
-  " Yank the word under the cursor into the z register
-  normal "zyiw
-  " Fuzzy match files in the current directory, starting with the word under
-  " the cursor
-  call SelectaCommand("find * -type f", "-s " . @z, ":e")
+    " Yank the word under the cursor into the z register
+    normal "zyiw
+    " Fuzzy match files in the current directory, starting with the word under
+    " the cursor
+    call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
 
