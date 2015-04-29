@@ -15,6 +15,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-cucumber'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
 call vundle#end()
