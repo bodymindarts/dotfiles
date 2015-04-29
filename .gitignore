@@ -36,3 +36,4 @@ projects
 .zcompdump
 .vim/undo
 .vim/.netrwhist
+.pry_history
