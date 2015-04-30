@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+authors() {
+    git log --format='%aN' | sort -u
+}
+
+file_lines() {
+    for file in $(git ls-files); do
+        git blame "$file"
+    done
+}
+
+file_lines > blame.txt
+
+authors | while read author; do
+    echo "$author:" $(grep "($author" blame.txt | wc -l)
+done | grep -v ': 0' | sort -nrt : -k 2 | column -s : -t
