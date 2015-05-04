@@ -80,7 +80,7 @@ set wildmenu                       " show menu of complete option
 
 augroup vimrc
     autocmd!
-    autocmd FileType vim  setlocal shiftwidth=4 | setlocal softtabstop=4 | setlocal tabstop=4
+    autocmd FileType vim,bash,sh  setlocal shiftwidth=4 | setlocal softtabstop=4 | setlocal tabstop=4
 
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufReadPost nginx.conf set ft=nginx
