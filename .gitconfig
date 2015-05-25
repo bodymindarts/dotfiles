@@ -7,10 +7,12 @@
     templatedir = ~/.git_template
 [alias]
     ctags = !.git/hooks/ctags
+    dc = diff --cached
     a = add
     rm = remove
     co = checkout
     ci = commit
+    amend = commit --amend
     b = branch -v
     a = add
     ap = add -p
