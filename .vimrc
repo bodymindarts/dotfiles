@@ -103,7 +103,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-let mapleader=","
+let mapleader=" "
 
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
