@@ -14,9 +14,15 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-cucumber'
+
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
+
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'elixir-lang/vim-elixir'
 call vundle#end()
 
 colorscheme jellybeans
@@ -79,15 +85,17 @@ set wildmenu                       " show menu of complete option
 
 augroup vimrc
     autocmd!
-    autocmd FileType vim,bash,sh  setlocal shiftwidth=4 | setlocal softtabstop=4 | setlocal tabstop=4
 
     autocmd BufNewFile, BufRead *.json set ft=javascript
     autocmd BufReadPost nginx.conf set ft=nginx
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir
         \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    autocmd FileType make
+          \ set softtabstop=8 shiftwidth=8 tabstop=8
+    autocmd FileType javascript :call <SID>SetUpJSDev()
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -95,6 +103,13 @@ augroup vimrc
             \ exe "normal g`\"" |
         \ endif
 augroup end
+
+function! <SID>SetUpJSDev()
+  set softtabstop=2 shiftwidth=2 tabstop=2 expandtab
+  nnoremap <buffer> <leader>c :!make test<CR>
+  nnoremap <buffer> <leader>l :!make lint<CR>
+  nnoremap <buffer> <leader>k :!make karma<CR>
+endfunction
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -111,6 +126,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
 nnoremap <leader>x :w<cr>:!chmod +x %<cr>:edit!<cr>
 nnoremap <leader>m :!mkdir -p %:p:h<cr>
+nnoremap <leader>w :w<cr>
 inoremap UU <esc>u
 inoremap jj <esc>
 nnoremap <leader>sp :tabe ~/.sbt/0.13/plugins/plugins.sbt<cr>
@@ -327,7 +343,15 @@ function! RunLastTestCommand()
         execute "!clear && echo " . t:last_test_command . " && " . t:last_test_command
     endif
 endfunction
+function! RunJSTest()
+  :w
+  call SetTestFile()
+  let t:last_test_command = "NODE_PATH=$(pwd)/public ./node_modules/.bin/_mocha --ui bdd --require ./tests/helper.js " . t:current_test_file
+  call RunLastTestCommand()
+endfunction
+
 nnoremap <Leader>c :call RunTestFile()<CR>
+" RunJSTest()<CR>
 nnoremap <Leader>n :call RunNearestTest()<CR>
 nnoremap <Leader>a :call RunTests('')<CR>
 nnoremap <leader>l :call RunLastTestCommand()<CR>
@@ -351,7 +375,8 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
 endfunction
 
 function! SelectaFile(path)
-    call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
+  " call SelectaCommand("git ls-files", "", ":e")
+  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
 endfunction
 
 nnoremap <leader>f :call SelectaFile(".")<cr>
