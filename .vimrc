@@ -94,9 +94,7 @@ augroup vimrc
 
     autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-    autocmd FileType make
-          \ set softtabstop=8 shiftwidth=8 tabstop=8
-    autocmd FileType javascript :call <SID>SetUpJSDev()
+    autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -153,6 +151,12 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+nmap <silent> <leader>n :TestNearest<CR>
+nmap <silent> <leader>c :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
