@@ -30,6 +30,7 @@ alias sz="source ~/.zshrc"
 
 alias ll="ls -alG"
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+alias g="git"
 alias gs="git status"
 alias gb="git branch -v"
 alias gp="git pull"
@@ -46,6 +47,10 @@ function p() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
 eval "$(boot2docker shellinit)"
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 export REDIS_URL='redis://192.168.59.103:6379'
 export RABBITMQ_URL='amqp://192.168.59.103:5672'
+
+alias lmix="~/projects/elixir/elixir/bin/mix"
