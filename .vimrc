@@ -132,6 +132,9 @@ nnoremap h l
 nnoremap k j
 nnoremap l k
 
+onoremap k j
+onoremap l k
+
 vnoremap s h
 vnoremap h l
 vnoremap k j
