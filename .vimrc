@@ -92,7 +92,8 @@ augroup vimrc
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
-    autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp
+      \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
 
