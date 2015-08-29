@@ -38,3 +38,16 @@ projects
 .vim/.netrwhist
 .pry_history
 .npm
+.vim-flavor
+.berkshelf
+.chef
+.docker
+.nvm
+.vagrant.d
+.gnupg/
+.hex/
+.jenv/
+.m2/
+.mix/
+.node-gyp/
+talks/
