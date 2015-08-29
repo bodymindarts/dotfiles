@@ -3,6 +3,10 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
+bindkey -e
+bindkey '[C' forward-word
+bindkey '[D' backward-word
+
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 precmd () { __git_ps1 "%{$fg_bold[cyan]%}%~%{$reset_color%} " "%# " "(%s) " }
 GIT_PS1_SHOWDIRTYSTATE=1
