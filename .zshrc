@@ -50,13 +50,10 @@ function p() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
 
 eval "$(rbenv init -)"
 eval "$(direnv hook $0)"
-eval "$(docker-machine env dev)"
-export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
+# eval "$(docker-machine env dev)"
+# export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
 
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-
-export REDIS_URL="redis://$DOCKER_IP:6379"
-export RABBITMQ_URL="amqp://$DOCKER_IP:5672"
 
 alias lmix="~/projects/elixir/elixir/bin/mix"
