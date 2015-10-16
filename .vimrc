@@ -163,6 +163,26 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open spec file
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! Twitch(vim_command)
+  let file_name = expand('%:t')
+
+  if file_name !~ '_spec.rb$'
+    let target_file_name = substitute(file_name, '\.rb$', '_spec.rb', '')
+  else
+    let target_file_name = substitute(file_name, '_spec', '', '')
+  endif
+
+  let target_path = system("find . -path '*/" . target_file_name . "'")
+
+  exec a:vim_command . ' ' . target_path
+endfunction
+
+nnoremap <leader>t :call Twitch(':e')<CR>
+nnoremap <leader>vt :call Twitch(':vsplit')<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
