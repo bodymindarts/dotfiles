@@ -57,3 +57,6 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
 alias lmix="~/projects/elixir/elixir/bin/mix"
+
+export GOPATH=$HOME/golang
+export PATH=$PATH:$GOPATH/bin
