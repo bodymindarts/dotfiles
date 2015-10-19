@@ -24,6 +24,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 Plugin 'elixir-lang/vim-elixir'
+
+Plugin 'bodymindarts/vim-twitch'
 call vundle#end()
 
 colorscheme jellybeans
@@ -162,25 +164,8 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open spec file
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! Twitch(vim_command)
-  let file_name = expand('%:t')
-
-  if file_name !~ '_spec.rb$'
-    let target_file_name = substitute(file_name, '\.rb$', '_spec.rb', '')
-  else
-    let target_file_name = substitute(file_name, '_spec', '', '')
-  endif
-
-  let target_path = system("find . -path '*/" . target_file_name . "'")
-
-  exec a:vim_command . ' ' . target_path
-endfunction
-
-nnoremap <leader>t :call Twitch(':e')<CR>
-nnoremap <leader>vt :call Twitch(':vsplit')<CR>
+nnoremap <leader>t :Twitch<CR>
+nnoremap <leader>vt :VTwitch<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
@@ -236,10 +221,10 @@ nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix(
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! PromoteToLet()
-    :normal! dd
-    :normal! P
-    :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-    :normal ==
+  :normal! dd
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
@@ -249,13 +234,13 @@ endfunction
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <leader>N :call RenameFile()<cr>
 
@@ -264,16 +249,16 @@ map <leader>N :call RenameFile()<cr>
 " BREAK UP METHOD CALL (1 arg per line)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! <SID>ArgPerLine()
-    if search('(', 'cb', line('.')) == 0
-        call search('(', '', line('.'))
-    endif
+  if search('(', 'cb', line('.')) == 0
+    call search('(', '', line('.'))
+  endif
+  exec "normal! a\<cr>\<esc>"
+  while search(',', '', line('.')) != 0
     exec "normal! a\<cr>\<esc>"
-    while search(',', '', line('.')) != 0
-        exec "normal! a\<cr>\<esc>"
-    endwhile
-    if search(')', '', line('.')) != 0
-        exec "normal! i\<cr>\<esc>"
-    endif
+  endwhile
+  if search(')', '', line('.')) != 0
+    exec "normal! i\<cr>\<esc>"
+  endif
 endfunction
 nnoremap <leader>ba :call <SID>ArgPerLine()<cr>
 
