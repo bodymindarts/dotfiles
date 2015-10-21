@@ -34,6 +34,7 @@ let g:jellybeans_overrides = {
 \  'Special': { 'guifg': 'de5577' },
 \}
 
+
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -158,6 +159,7 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+let test#ruby#cucumber#options = '-r features'
 nmap <silent> <leader>n :TestNearest<CR>
 nmap <silent> <leader>c :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
