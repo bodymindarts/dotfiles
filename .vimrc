@@ -99,6 +99,7 @@ augroup vimrc
       \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
+    autocmd FileType go set softtabstop=4 shiftwidth=4 tabstop=4
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
