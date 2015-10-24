@@ -18,3 +18,5 @@
     ap = add -p
 [credential]
     helper = osxkeychain
+[push]
+	default = simple
