@@ -159,16 +159,18 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+nnoremap <leader>g "zyiw :Ack! <c-r>=@z<CR><CR>
 
 let test#ruby#cucumber#options = '-r features'
-nmap <silent> <leader>n :TestNearest<CR>
-nmap <silent> <leader>c :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+
+nnoremap <silent> <leader>n :TestNearest<CR>
+nnoremap <silent> <leader>c :TestFile<CR>
+nnoremap <silent> <leader>a :TestSuite<CR>
+nnoremap <silent> <leader>l :TestLast<CR>
 
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>
+nnoremap <leader>T :tabnew %<CR>:VTwitch<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
