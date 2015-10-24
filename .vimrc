@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle.vim'
 
 " plugins:
+Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
@@ -171,6 +172,24 @@ nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>
 nnoremap <leader>T :tabnew %<CR>:VTwitch<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_root_markers = ['tags', '.tags']
+let g:ctrlp_abbrev = {
+    \ 'abbrevs': [
+        \ {
+            \ 'pattern': 'vim',
+            \ 'expanded': '@cd ~/.vim/'
+        \ },
+    \ ]
+\ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix list management
