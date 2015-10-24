@@ -4,7 +4,7 @@ filetype off                " req Vundle
 set rtp+=~/.vim/bundle/vundle " req Vundle
 call vundle#begin()
 " vundle handles vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/vundle.vim'
 
 " plugins:
 Plugin 'mileszs/ack.vim'
