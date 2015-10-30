@@ -7,7 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle.vim'
 
 " plugins:
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
@@ -17,16 +17,15 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-bundler'
 
 Plugin 'janko-m/vim-test'
+Plugin 'bodymindarts/vim-twitch'
+
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
-
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-
 Plugin 'elixir-lang/vim-elixir'
-
-Plugin 'bodymindarts/vim-twitch'
+Plugin 'dag/vim2hs'
 call vundle#end()
 
 colorscheme jellybeans
@@ -48,7 +47,7 @@ filetype plugin indent on          " req Vundle
 " syntax highlighting group that the current "thing" under the cursor
 " belongs to -- very useful for figuring out what to change as far as
 " syntax highlighting goes.
-nmap <silent> <leader>ps :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap <silent> <leader>sy :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 runtime macros/matchit.vim
 syntax on
@@ -96,7 +95,7 @@ augroup vimrc
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell
       \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
@@ -251,7 +250,7 @@ function! PromoteToLet()
   :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
+nnoremap <leader>p :PromoteToLet<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -285,6 +284,5 @@ function! <SID>ArgPerLine()
   endif
 endfunction
 nnoremap <leader>ba :call <SID>ArgPerLine()<cr>
-
 
 :nohl
