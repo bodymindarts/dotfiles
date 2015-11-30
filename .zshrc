@@ -53,10 +53,5 @@ eval "$(rbenv init -)"
 # eval "$(docker-machine env dev)"
 # export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
-alias lmix="~/projects/elixir/elixir/bin/mix"
-
 export GOPATH=$HOME/golang
 export PATH=$PATH:$GOPATH/bin
