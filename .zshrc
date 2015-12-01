@@ -50,7 +50,7 @@ function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 function p() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
 
 eval "$(rbenv init -)"
-# eval "$(direnv hook $0)"
+eval "$(direnv hook zsh)"
 # eval "$(docker-machine env dev)"
 # export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
 
