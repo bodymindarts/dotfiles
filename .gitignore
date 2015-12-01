@@ -52,3 +52,4 @@ projects
 .node-gyp/
 talks/
 .bosh_config
+.bosh
