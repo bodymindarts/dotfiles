@@ -54,3 +54,5 @@ talks/
 .bosh_config
 .bosh
 .cf
+.bzr.log
+golang
