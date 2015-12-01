@@ -1,4 +1,3 @@
-tap thoughtbot/formulae
 install git
 install zsh
 install ack
@@ -13,5 +12,3 @@ install caskroom/cask/brew-cask
 
 cask install iterm2
 cask install virtualbox
-
-install boot2docker
