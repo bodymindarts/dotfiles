@@ -53,3 +53,4 @@ projects
 talks/
 .bosh_config
 .bosh
+.cf
