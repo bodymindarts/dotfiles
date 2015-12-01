@@ -80,6 +80,7 @@ set splitright                     " vsplit opens new window to the right
 set statusline=%f\ %m%r%y%=%3l,%2c
 set tabstop=2                      " spaces per tab
 set tags+=.git/tags,./.tags
+set term=screen-256color
 set undodir=~/.vim/undo//
 set undofile
 set undolevels=1000
@@ -283,4 +284,4 @@ function! <SID>ArgPerLine()
 endfunction
 nnoremap <leader>ba :call <SID>ArgPerLine()<cr>
 
-:nohl
+nohl

@@ -22,6 +22,7 @@ export EDITOR=vi
 export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
+export TERM=screen-256color
 
 PATH=$PATH:~/bin:/usr/local/sbin
 
