@@ -22,7 +22,7 @@ export EDITOR=vi
 export HISTFILE=~/.histfile
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
-export TERM=screen-256color
+export TERM=screen-256color # for vim colors to work properly in tmux
 
 PATH=$PATH:~/bin:/usr/local/sbin
 
