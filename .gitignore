@@ -56,3 +56,9 @@ talks/
 .cf
 .bzr.log
 golang
+.cups
+.mysql_history
+.psql_history
+.rediscli_history
+.swaws
+.terraform.d/
