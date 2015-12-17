@@ -62,3 +62,11 @@ golang
 .rediscli_history
 .swaws
 .terraform.d/
+.IdeaIC15/
+.android/
+.gradle/
+.grails/
+.grails_history
+.oracle_jre_usage/
+IdeaProjects/
+.otto.d/
