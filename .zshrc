@@ -40,7 +40,7 @@ alias gs="git status -s"
 # alias gb="git branch -v"
 alias gp="git pull"
 alias gl="git log --oneline --graph --decorate --date=relative"
-alias ber="bundle exec rake"
+alias b="bundle exec"
 
 alias sr="screen -r"
 
