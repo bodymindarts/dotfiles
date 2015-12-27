@@ -131,24 +131,11 @@ inoremap jj <esc>
 inoremap NN <esc>
 inoremap <tab> <BS>
 
-nnoremap s h
-nnoremap h l
-nnoremap k j
-nnoremap l k
-
-onoremap k j
-onoremap l k
-
-vnoremap s h
-vnoremap h l
-vnoremap k j
-vnoremap l k
-
 " Quicker window movement
-nnoremap <C-n> <C-w>h
-nnoremap <C-e> <C-w>l
-nnoremap <C-k> <C-w>j
-nnoremap <C-l> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 
 " Quicker open alternate
 nnoremap <leader><leader> <c-^>
