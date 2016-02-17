@@ -25,6 +25,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'fatih/vim-go'
 Plugin 'dag/vim2hs'
 call vundle#end()
 
