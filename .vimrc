@@ -128,6 +128,7 @@ nnoremap <leader>m :!mkdir -p %:p:h<cr>
 nnoremap <leader>w :w<cr>
 inoremap UU <esc>u
 inoremap jj <esc>
+nnoremap <leader>sp :tabe ~/.sbt/0.13/plugins/plugins.sbt<cr>
 
 inoremap NN <esc>
 inoremap <tab> <BS>
@@ -225,6 +226,7 @@ endfunction
 
 nnoremap <leader>q :call ToggleQuickfix()<cr>
 nnoremap <leader>rq :cgetfile .git/rspec.quickfix<cr>:call OpenQuickfix()<cr>
+nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
