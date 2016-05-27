@@ -14,6 +14,8 @@ file_lines() {
 
 file_lines > blame.txt
 
+trap "rm blame.txt" EXIT
+
 authors | while read author; do
     echo "$author:" $(grep "($author" blame.txt | wc -l)
 done | grep -v ': 0' | sort -nrt : -k 2 | column -s : -t
