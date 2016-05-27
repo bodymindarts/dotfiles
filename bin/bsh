@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e #fail fast
+
+vm_ip() {
+  bosh vms | grep $1 | tr -d "|" | awk '{ print $6 }'
+}
+
+vm=$1
+file=$2
+
+if [[ ! -z $file ]]
+then
+  ip=$(vm_ip $vm)
+  echo "copying $file to vm $vm"
+  sed -i '' "/$ip/d" ~/.ssh/known_hosts || true
+  sshpass -p c1oudc0w scp -o StrictHostKeyChecking=no $file vcap@$ip:/tmp/
+fi
+
+bosh ssh $vm
