@@ -52,8 +52,7 @@ source ~/.rvm/scripts/rvm
 # ps1_set
 # PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 eval "$(direnv hook zsh)"
-# eval "$(docker-machine env dev)"
-# export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
+eval "$(docker-machine env default)"
 
 export GOPATH=$HOME/golang
 export PATH=$PATH:$GOPATH/bin
