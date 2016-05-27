@@ -58,3 +58,9 @@ export GOPATH=$HOME/golang
 function gp() { cd $(find $GOPATH/src -maxdepth 3 -type d | selecta) }
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home
+
+alias br="bosh create release --force && bosh -n upload release"
+
+cf_routes() {
+  curl "http://router:router@10.244.0.22:8080/routes" | jq
+}
