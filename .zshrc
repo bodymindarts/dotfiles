@@ -36,9 +36,8 @@ alias sz="source ~/.zshrc"
 alias ll="ls -alG"
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 alias g="git"
+alias gb="git branch"
 alias gs="git status -s"
-# alias gb="git branch -v"
-alias gp="git pull"
 alias gl="git log --oneline --graph --decorate --date=relative"
 alias b="bundle exec"
 
@@ -47,7 +46,11 @@ function dc { dc-anywhere.sh $@ }
 function mcd() { mkdir -p $1 && cd $1 } # from garybernhardt/dotfiles
 function p() { cd $(find ~/projects -maxdepth 3 -type d | selecta) }
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
+source ~/.rvm/scripts/rvm
+# source ~/.rvm/contrib/ps1_functions
+# ps1_set
+# PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 eval "$(direnv hook zsh)"
 # eval "$(docker-machine env dev)"
 # export DOCKER_IP=$(echo $DOCKER_HOST | egrep -o '192.([0-9]+\.?)+')
