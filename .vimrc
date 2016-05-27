@@ -21,12 +21,16 @@ Plugin 'bodymindarts/vim-twitch'
 
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'nginx.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
 Plugin 'dag/vim2hs'
+Plugin 'derekwyatt/vim-scala'
+
+Plugin 'hashivim/vim-hashicorp-tools'
+
+Plugin 'IN3D/vim-raml'
+
 call vundle#end()
 
 colorscheme jellybeans
@@ -145,6 +149,8 @@ nnoremap <leader><leader> <c-^>
 " split window and reset to last
 nnoremap vv <c-w>v<c-w>h<c-^>
 
+nnoremap <leader>r :!./%<cr>
+nnoremap <leader>u :GoImports<cr>
 
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -160,6 +166,8 @@ nnoremap <silent> <leader>l :TestLast<CR>
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>
 nnoremap <leader>T :tabnew %<CR>:VTwitch<CR>
+
+let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP SETTINGS
