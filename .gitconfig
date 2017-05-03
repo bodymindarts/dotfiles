@@ -1,6 +1,6 @@
 [user]
     name = Justin Carter
-    email = jcarter@starkandwayne.com
+    email = justin@starkandwayne.com
 [core]
     excludesfile = ~/.global-gitignore
 [init]

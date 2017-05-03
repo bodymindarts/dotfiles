@@ -101,7 +101,7 @@ augroup vimrc
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell,rust
       \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
@@ -152,6 +152,8 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 nnoremap <leader>r :!./%<cr>
 nnoremap <leader>u :GoImports<cr>
 
+let g:rustfmt_autosave = 0
+
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 nnoremap <leader>g "zyiw :Ack! <c-r>=@z<CR><CR>
@@ -162,6 +164,9 @@ nnoremap <silent> <leader>n :TestNearest<CR>
 nnoremap <silent> <leader>c :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
+
+nnoremap <silent> <leader>b :!jscripts/build.sh %<CR>
+nnoremap <silent> <leader>c :!jscripts/test_one.sh %<CR>
 
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>
