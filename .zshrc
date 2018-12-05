@@ -107,7 +107,6 @@ fi
 if [ -f /Users/jcarter/google-cloud-sdk/completion.zsh.inc ]; then
   source '/Users/jcarter/google-cloud-sdk/completion.zsh.inc'
 fi
-export HAB_AUTH_TOKEN=6d09ef8874b9cf1bb5985667957b3bb9bfba08ac
 
 . /Users/jcarter/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
