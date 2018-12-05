@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 set nocompatible
 
 filetype off                " req Vundle
@@ -14,7 +17,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-bundler'
 
 Plugin 'janko-m/vim-test'
 Plugin 'bodymindarts/vim-twitch'
@@ -25,11 +27,12 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'dag/vim2hs'
-Plugin 'derekwyatt/vim-scala'
+Plugin 'reasonml-editor/vim-reason'
 
 Plugin 'hashivim/vim-hashicorp-tools'
 
-Plugin 'IN3D/vim-raml'
+Plugin 'let-def/ocp-indent-vim'
+Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()
 
@@ -38,7 +41,6 @@ colorscheme jellybeans
 let g:jellybeans_overrides = {
 \  'Special': { 'guifg': 'de5577' },
 \}
-
 
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
@@ -93,6 +95,7 @@ set undoreload=10000
 set visualbell                     " no beeping
 set wildmenu                       " show menu of complete option
 
+let g:vimreason_extra_args_expr_reason = '"--print-width 80"'
 augroup vimrc
     autocmd!
 
@@ -104,8 +107,11 @@ augroup vimrc
     autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell,rust
       \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+    autocmd FileType reason autocmd BufWritePre <buffer> :ReasonPrettyPrint
+
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
     autocmd FileType go set softtabstop=4 shiftwidth=4 tabstop=4
+    autocmd FileType javascript set softtabstop=2 shiftwidth=2 tabstop=2
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -122,6 +128,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 let mapleader=" "
+let maplocalleader=","
 
 nnoremap <cr> :nohlsearch<cr>
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
@@ -158,6 +165,10 @@ let g:rustfmt_autosave = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
 nnoremap <leader>g "zyiw :Ack! <c-r>=@z<CR><CR>
 
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" let g:syntastic_ocaml_checkers = ['merlin']
+
 let test#ruby#cucumber#options = '-r features'
 
 nnoremap <silent> <leader>n :TestNearest<CR>
@@ -165,8 +176,8 @@ nnoremap <silent> <leader>c :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 
-nnoremap <silent> <leader>b :!jscripts/build.sh %<CR>
-nnoremap <silent> <leader>c :!jscripts/test_one.sh %<CR>
+nnoremap <silent> <leader>b :!cargo-build-bottom %<CR>
+" nnoremap <silent> <leader>c :!jscripts/test_one.sh %<CR>
 
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>

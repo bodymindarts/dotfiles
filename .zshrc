@@ -39,7 +39,8 @@ alias g="git"
 alias gb="git branch"
 alias gs="git status -s"
 alias gl="git log --oneline --graph --decorate --date=relative"
-alias b="bundle exec"
+alias b="bosh2"
+alias bc="~/projects/starkandwayne/bucc/bin/bucc"
 
 function dc { dc-anywhere.sh $@ }
 
@@ -86,7 +87,9 @@ function gp() { cd $(find $GOPATH/src -maxdepth 3 -type d | selecta) }
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home
 
+export PATH=${PATH}:~/projects/starkandwayne/bucc/bin/
 alias br="bosh create release --force && bosh -n upload release"
+alias tf=terraform
 
 export PATH=$PATH:/Users/jcarter/.cargo/bin
 alias antlr="java -jar ~/golang/src/github.com/millergarym/antlr4-go/lib/antlr4-4.5.4-SNAPSHOT.jar"
@@ -94,3 +97,27 @@ alias antlr="java -jar ~/golang/src/github.com/millergarym/antlr4-go/lib/antlr4-
 cf_routes() {
   curl "http://router:router@10.244.0.22:8080/routes" | jq
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/jcarter/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/jcarter/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/jcarter/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/jcarter/google-cloud-sdk/completion.zsh.inc'
+fi
+export HAB_AUTH_TOKEN=6d09ef8874b9cf1bb5985667957b3bb9bfba08ac
+
+. /Users/jcarter/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+tzr() {
+  tezos-client run program $1 on storage $2 and input $3 -trace-stack
+}
+# export PATH="/usr/local/opt/erlang@19/bin:$PATH"
+# export PATH="$HOME/.exenv/bin:$PATH"
+# eval "$(exenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
