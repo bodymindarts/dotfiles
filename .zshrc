@@ -98,21 +98,7 @@ cf_routes() {
   curl "http://router:router@10.244.0.22:8080/routes" | jq
 }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/jcarter/google-cloud-sdk/path.zsh.inc ]; then
-  source '/Users/jcarter/google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /Users/jcarter/google-cloud-sdk/completion.zsh.inc ]; then
-  source '/Users/jcarter/google-cloud-sdk/completion.zsh.inc'
-fi
-
 . /Users/jcarter/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-tzr() {
-  tezos-client run program $1 on storage $2 and input $3 -trace-stack
-}
 # export PATH="/usr/local/opt/erlang@19/bin:$PATH"
 # export PATH="$HOME/.exenv/bin:$PATH"
 # eval "$(exenv init -)"
@@ -120,3 +106,11 @@ tzr() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export LC_ALL=en_US.UTF-8
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jcarter/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jcarter/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jcarter/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jcarter/google-cloud-sdk/completion.zsh.inc'; fi
