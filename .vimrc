@@ -28,11 +28,12 @@ Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'dag/vim2hs'
 Plugin 'reasonml-editor/vim-reason'
+Plugin 'jparise/vim-graphql'
 
 Plugin 'hashivim/vim-hashicorp-tools'
+Plugin 'neomake/neomake'
 
 Plugin 'let-def/ocp-indent-vim'
-Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()
 
@@ -47,6 +48,21 @@ autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraLines ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+" Neomake
+" Gross hack to stop Neomake running when exitting because it creates a zombie cargo check process
+" which holds the lock and never exits. But then, if you only have QuitPre, closing one pane will
+" disable neomake, so BufEnter reenables when you enter another buffer.
+let s:quitting = 0
+au QuitPre *.rs let s:quitting = 1
+au BufEnter *.rs let s:quitting = 0
+au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+au QuitPre *.ts let s:quitting = 1
+au BufEnter *.ts let s:quitting = 0
+au BufWritePost *.ts if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+let g:neomake_warning_sign = {'text': '?'}
+
+let g:rustfmt_autosave = 1
 
 filetype plugin indent on          " req Vundle
 
@@ -141,7 +157,6 @@ inoremap UU <esc>u
 inoremap jj <esc>
 nnoremap <leader>sp :tabe ~/.sbt/0.13/plugins/plugins.sbt<cr>
 
-inoremap NN <esc>
 inoremap <tab> <BS>
 
 " Quicker window movement
@@ -159,15 +174,9 @@ nnoremap vv <c-w>v<c-w>h<c-^>
 nnoremap <leader>r :!./%<cr>
 nnoremap <leader>u :GoImports<cr>
 
-let g:rustfmt_autosave = 0
-
 " use ag for ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 nnoremap <leader>g "zyiw :Ack! <c-r>=@z<CR><CR>
-
-" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-" execute "set rtp+=" . g:opamshare . "/merlin/vim"
-" let g:syntastic_ocaml_checkers = ['merlin']
 
 let test#ruby#cucumber#options = '-r features'
 
@@ -176,14 +185,14 @@ nnoremap <silent> <leader>c :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
 
-nnoremap <silent> <leader>b :!cargo-build-bottom %<CR>
+nnoremap <silent> <leader>b :!in-bottom-pane make build<CR>
+nnoremap <silent> <leader>p :!in-bottom-pane make run<CR>
+nnoremap <silent> <leader>c :!in-bottom-pane make test-all<CR>
 " nnoremap <silent> <leader>c :!jscripts/test_one.sh %<CR>
 
 nnoremap <leader>t :Twitch<CR>
 nnoremap <leader>vt :VTwitch<CR>
 nnoremap <leader>T :tabnew %<CR>:VTwitch<CR>
-
-let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP SETTINGS
@@ -249,21 +258,6 @@ function! OpenQuickfix()
 endfunction
 
 nnoremap <leader>q :call ToggleQuickfix()<cr>
-nnoremap <leader>rq :cgetfile .git/rspec.quickfix<cr>:call OpenQuickfix()<cr>
-nnoremap <leader>sq :cgetfile targe/quickfix/sbt.quickfix<cr>:call OpenQuickfix()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PROMOTE VARIABLE TO RSPEC LET
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PromoteToLet()
-  :normal! dd
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-nnoremap <leader>p :PromoteToLet<cr>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
