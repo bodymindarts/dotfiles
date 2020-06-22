@@ -74,18 +74,7 @@ zle -N insert-selecta-path-in-command-line
 # Bind the key to the newly created widget
 bindkey "^S" "insert-selecta-path-in-command-line"
 
-# eval "$(rbenv init -)"
-source ~/.rvm/scripts/rvm
-# source ~/.rvm/contrib/ps1_functions
-# ps1_set
-# PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 eval "$(direnv hook zsh)"
-# eval "$(docker-machine env default)"
-
-export GOPATH=$HOME/golang
-function gp() { cd $(find $GOPATH/src -maxdepth 3 -type d | selecta) }
-export PATH=$PATH:$GOPATH/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home
 
 export PATH=${PATH}:~/projects/starkandwayne/bucc/bin/
 alias br="bosh create release --force && bosh -n upload release"
@@ -114,3 +103,5 @@ if [ -f '/Users/jcarter/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jcarter
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jcarter/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jcarter/google-cloud-sdk/completion.zsh.inc'; fi
+
+alias k=kubectl
