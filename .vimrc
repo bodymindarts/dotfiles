@@ -27,6 +27,8 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'dag/vim2hs'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'reasonml-editor/vim-reason'
 Plugin 'jparise/vim-graphql'
 
@@ -34,6 +36,7 @@ Plugin 'hashivim/vim-hashicorp-tools'
 Plugin 'neomake/neomake'
 
 Plugin 'let-def/ocp-indent-vim'
+Plugin 'prettier/vim-prettier'
 
 call vundle#end()
 
@@ -120,7 +123,7 @@ augroup vimrc
     autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
-    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell,rust
+    autocmd FileType ruby,haml,html,eruby,yaml,sass,scss,css,javascript,cucumber,vim,elixir,cpp,haskell,rust,typescriptreact,typescript,typescript.tsx
       \ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     autocmd FileType reason autocmd BufWritePre <buffer> :ReasonPrettyPrint
@@ -128,6 +131,8 @@ augroup vimrc
     autocmd FileType make set softtabstop=8 shiftwidth=8 tabstop=8
     autocmd FileType go set softtabstop=4 shiftwidth=4 tabstop=4
     autocmd FileType javascript set softtabstop=2 shiftwidth=2 tabstop=2
+    autocmd FileType typescript set softtabstop=2 shiftwidth=2 tabstop=2
+    autocmd FileType typescript.tsx set softtabstop=2 shiftwidth=2 tabstop=2
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
