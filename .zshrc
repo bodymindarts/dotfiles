@@ -81,6 +81,7 @@ alias br="bosh create release --force && bosh -n upload release"
 alias tf=terraform
 
 export PATH=$PATH:/Users/jcarter/.cargo/bin
+export PATH=$PATH:/Users/jcarter/go/bin
 alias antlr="java -jar ~/golang/src/github.com/millergarym/antlr4-go/lib/antlr4-4.5.4-SNAPSHOT.jar"
 
 cf_routes() {
@@ -106,7 +107,6 @@ if [ -f '/Users/jcarter/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/j
 
 alias k=kubectl
 alias ctags="`brew --prefix`/bin/ctags"
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

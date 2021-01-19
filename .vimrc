@@ -67,6 +67,9 @@ let g:neomake_warning_sign = {'text': '?'}
 
 let g:rustfmt_autosave = 1
 
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+
 filetype plugin indent on          " req Vundle
 
 " The following beast is something i didn't write... it will return the
